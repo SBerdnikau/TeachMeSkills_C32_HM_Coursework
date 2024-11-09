@@ -1,4 +1,4 @@
-
+# Here, the following tasks are implemented:
 
 Create a program for processing payment documents and providing financial statements.
 Access to the program must be carried out by login and password.
@@ -16,12 +16,13 @@ It is advisable to separate the logs: for storing general information and for st
 Upon completion of the program, all invalid files must be moved to a separate folder.
 The final statistics must be downloaded to a separate file. The statistics file must be uploaded to Amazon S3 cloud storage.
 Settings for the program, such as keys for S3 and session lifetime, should be in the properties file.
-Statistics:
+
+*Statistics:*
 - total turnover for all invoices
 - total turnover for all orders
 - total turnover for all checks
 
-Acceptance criteria
+*Acceptance criteria*
 - Working program.
 - Clean and understandable code.
 - Compliance with the naming convention for packages, classes, methods, variables.
@@ -31,14 +32,14 @@ Acceptance criteria
 - All working code must be in the master branch. The number of other branches is not limited.
 - The repository should not contain unnecessary files and folders (for example, out, target and others).
 
-Test scenario
+*Test scenario*
 1. Launch the program
 2. The program requests credentials -> enter login and password
 3. The program generates a QR code -> scan the code and receive a temporary password to enter the program (OTP)
 4. The program requests the path to the folder -> enter the path to the folder
 5. The program is executed and the results of the program are saved in a separate folder, the report is uploaded to the cloud storage
 
-Additional technical information on the project structure
+*Additional technical information on the project structure*
 Services:
 - Authorization service.
 - File reading and processing service.
