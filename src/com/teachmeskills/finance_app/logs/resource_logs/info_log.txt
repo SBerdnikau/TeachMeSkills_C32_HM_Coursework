@@ -22,3 +22,17 @@ Info-logger: Начало проверки логина и пароля 	Sat Nov
 Info-logger: Конец проверки логина и пароля: true	Sat Nov 09 19:59:03 MSK 2024
 Info-logger: Авторизация пользователя успешная	Sat Nov 09 19:59:03 MSK 2024
 Info-logger: Сессия валидна	Sat Nov 09 19:59:04 MSK 2024
+Info-logger: Запуск приложения.	Sat Nov 09 20:40:15 MSK 2024
+Info-logger: Получили данные пользователя	Sat Nov 09 20:40:15 MSK 2024
+Info-logger: Идёт дешифрование входных данных пользователя...	Sat Nov 09 20:40:15 MSK 2024
+Info-logger: Запуск приложения.	Sat Nov 09 20:40:42 MSK 2024
+Info-logger: Получили данные пользователя	Sat Nov 09 20:40:42 MSK 2024
+Info-logger: Идёт дешифрование входных данных пользователя...	Sat Nov 09 20:40:42 MSK 2024
+Info-logger: Запуск приложения.	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Получили данные пользователя	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Идёт дешифрование входных данных пользователя...	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Идёт дешифрование входных данных пользователя...	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Начало проверки логина и пароля 	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Конец проверки логина и пароля: true	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Авторизация пользователя успешная	Sat Nov 09 20:42:05 MSK 2024
+Info-logger: Сессия валидна	Sat Nov 09 20:42:05 MSK 2024
