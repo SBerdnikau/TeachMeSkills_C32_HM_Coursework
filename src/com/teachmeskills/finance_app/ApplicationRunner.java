@@ -2,6 +2,7 @@ package com.teachmeskills.finance_app;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
 import com.teachmeskills.finance_app.service.auth_service.AuthService;
+import com.teachmeskills.finance_app.service.encrypt_service.EncryptorService;
 import com.teachmeskills.finance_app.session.SessionManager;
 
 public class ApplicationRunner {
@@ -21,5 +22,4 @@ public class ApplicationRunner {
             LoggerService.logInfo("Сессия не валидна");
         }
     }
-
 }
