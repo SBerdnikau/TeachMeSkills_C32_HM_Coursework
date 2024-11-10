@@ -1,10 +1,10 @@
 package com.teachmeskills.finance_app.model;
 
-public class Invoice {
-    //TODO описание класса инвойсы +
-   private double totalAmount;
+public class Check {
+    //TODO описание класса чеки +
+    private double totalAmount;
 
-    public Invoice(double totalAmount) {
+    public Check(double totalAmount) {
         this.totalAmount = totalAmount;
     }
 
