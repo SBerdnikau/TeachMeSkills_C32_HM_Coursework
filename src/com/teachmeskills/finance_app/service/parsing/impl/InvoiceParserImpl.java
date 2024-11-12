@@ -1,7 +1,7 @@
-package com.teachmeskills.finance_app.service.parce_service.impl;
+package com.teachmeskills.finance_app.service.parsing.impl;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
-import com.teachmeskills.finance_app.service.parce_service.IParser;
+import com.teachmeskills.finance_app.service.parsing.IParser;
 import com.teachmeskills.finance_app.session.SessionManager;
 
 import java.io.*;
@@ -9,22 +9,22 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class OrderParserImpl implements IParser {
+public class InvoiceParserImpl implements IParser {
 
-    public void validatorDocument(SessionManager session){
+    @Override
+    public void validatorDocument(String directoryPath, SessionManager session) {
+        //TODO Логика обработки документов. Сбор статистики по инвойсам
         if (session.isSessionValid()){
-
-            String directoryPath = "src/com/teachmeskills/finance_app/resources/data/orders";
-            double totalOrder = 0.0;
-            LoggerService.logInfo("Сессия валидная. Читаем файлы типа 2024_order_xxx.txt");
+            double totalAmount = 0.0;
+            LoggerService.logInfo("Сессия валидная. Читаем файлы типа INVOICE_XX_2024_XX.txt");
             File directory = new File(directoryPath);
             if (directory.isDirectory()) {
                 File[] files = directory.listFiles();
                 if (files != null) {
                     for (File file : files) {
                         // Проверяем, соответствует ли имя файла формату (без учёта регистра)
-                        if (file.getName().toLowerCase().matches("2024_order_\\d+\\.txt")) {
-                            totalOrder += parsingDocument(file);
+                        if (file.getName().toLowerCase().matches( "invoice_\\d+_2024\\.txt|invoice_\\d+_2024_([a-z])\\.txt")) {
+                            totalAmount += parsingDocument(file);
                         }
                     }
                 }
@@ -32,26 +32,25 @@ public class OrderParserImpl implements IParser {
                 System.out.println("Указанный путь не является папкой.");
             }
             System.out.println("========================================");
-            System.out.printf("Общая сумма по ордерам: %.2f%n", totalOrder);
+            System.out.printf("Общая сумма по инвойсам: %.2f%n", totalAmount);
             System.out.println("========================================");
         }else {
             LoggerService.logInfo("Сессия не валидная");
         }
-
     }
 
+    @Override
     public double parsingDocument(File fileName) {
-        //TODO Логика обработки документов. Сбор статистики по  ордерам
-        double orderTotal = 0.0;
-        LoggerService.logInfo("Парсим документ Order. Достаём поле общая стоимость...");
-        Pattern pattern = Pattern.compile("Order Total\\s*(\\d{1,3})(,\\d{3})*\\.(\\d{2})", Pattern.CASE_INSENSITIVE);
+        double totalAmount = 0.0;
+        LoggerService.logInfo("Парсим документ Invoice. Достаём поле общая стоимость...");
+        Pattern pattern = Pattern.compile("Total amount\\s*(\\d+)\\$", Pattern.CASE_INSENSITIVE);
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.find()) {
-                    orderTotal = Double.parseDouble(matcher.group(1));
+                    totalAmount = Double.parseDouble(matcher.group(1));
                     break; // Предположим, что мы хотим только первое вхождение
                 }
             }
@@ -63,8 +62,6 @@ public class OrderParserImpl implements IParser {
             throw new RuntimeException(e);
         }
 
-        return orderTotal;
-
+        return totalAmount;
     }
-
 }

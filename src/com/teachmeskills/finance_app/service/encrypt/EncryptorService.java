@@ -1,4 +1,4 @@
-package com.teachmeskills.finance_app.service.encrypt_service;
+package com.teachmeskills.finance_app.service.encrypt;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
 

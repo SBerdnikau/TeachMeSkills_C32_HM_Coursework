@@ -1,11 +1,9 @@
-package com.teachmeskills.finance_app.service.auth_service;
+package com.teachmeskills.finance_app.service.auth;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
 import com.teachmeskills.finance_app.resources.MockStorage;
-import com.teachmeskills.finance_app.service.encrypt_service.EncryptorService;
+import com.teachmeskills.finance_app.service.encrypt.EncryptorService;
 import com.teachmeskills.finance_app.session.SessionManager;
-
-import java.io.IOException;
 
 public class AuthService {
     //TODO реализация авторизации пользователя +-

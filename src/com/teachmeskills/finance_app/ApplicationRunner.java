@@ -1,10 +1,10 @@
 package com.teachmeskills.finance_app;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
-import com.teachmeskills.finance_app.service.auth_service.AuthService;
-import com.teachmeskills.finance_app.service.parce_service.impl.CheckParserImpl;
-import com.teachmeskills.finance_app.service.parce_service.impl.InvoiceParserImpl;
-import com.teachmeskills.finance_app.service.parce_service.impl.OrderParserImpl;
+import com.teachmeskills.finance_app.service.auth.AuthService;
+import com.teachmeskills.finance_app.service.parsing.impl.CheckParserImpl;
+import com.teachmeskills.finance_app.service.parsing.impl.InvoiceParserImpl;
+import com.teachmeskills.finance_app.service.parsing.impl.OrderParserImpl;
 import com.teachmeskills.finance_app.session.SessionManager;
 
 import java.util.Scanner;
@@ -17,15 +17,20 @@ public class ApplicationRunner {
         String inputLogin = scanner.nextLine();
         System.out.print("Введите пароль: ");//TMC32Java
         String inputPass = scanner.nextLine();
-        LoggerService.logInfo("Запуск приложения.");
         AuthService authService = new AuthService();
         SessionManager sessionClient1 = authService.auth(inputLogin, inputPass);
         OrderParserImpl order = new OrderParserImpl();
         CheckParserImpl check = new CheckParserImpl();
         InvoiceParserImpl invoice = new InvoiceParserImpl();
-        order.validatorDocument(sessionClient1);
-        check.validatorDocument(sessionClient1);
-        invoice.validatorDocument(sessionClient1);
+        System.out.print("Введите путь к файлу Ордеров: ");
+        String directoryPathOrder = scanner.nextLine();// src/com/teachmeskills/finance_app/resources/data/orders
+        System.out.print("Введите путь к файлу Чеков: ");
+        String directoryPathCheck = scanner.nextLine();//src/com/teachmeskills/finance_app/resources/data/checks
+        System.out.print("Введите путь к файлу Инвойсов: ");
+        String directoryPathInvoice = scanner.nextLine();  //src/com/teachmeskills/finance_app/resources/data/invoices
+        order.validatorDocument(directoryPathOrder ,sessionClient1);
+        check.validatorDocument(directoryPathCheck, sessionClient1);
+        invoice.validatorDocument(directoryPathInvoice, sessionClient1);
     }
 
 }
