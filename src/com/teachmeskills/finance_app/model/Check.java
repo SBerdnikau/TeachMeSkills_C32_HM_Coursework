@@ -4,6 +4,9 @@ public class Check {
     //TODO описание класса чеки +
     private double totalAmount;
 
+    public Check() {
+    }
+
     public Check(double totalAmount) {
         this.totalAmount = totalAmount;
     }

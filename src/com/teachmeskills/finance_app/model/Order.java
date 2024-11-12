@@ -4,6 +4,9 @@ public class Order {
     //TODO описание класса ордера +
     private double orderTotal;
 
+    public Order() {
+    }
+
     public Order(double orderTotal) {
         this.orderTotal = orderTotal;
     }

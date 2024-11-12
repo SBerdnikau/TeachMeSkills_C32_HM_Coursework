@@ -1,6 +1,7 @@
 package com.teachmeskills.finance_app.service.parsing.impl;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
+import com.teachmeskills.finance_app.model.Order;
 import com.teachmeskills.finance_app.service.parsing.IParser;
 import com.teachmeskills.finance_app.session.SessionManager;
 
@@ -40,16 +41,15 @@ public class OrderParserImpl implements IParser {
 
     public double parsingDocument(File fileName) {
         //TODO Логика обработки документов. Сбор статистики по  ордерам
-        double orderTotal = 0.0;
         LoggerService.logInfo("Парсим документ Order. Достаём поле общая стоимость...");
         Pattern pattern = Pattern.compile("Order Total\\s*(\\d{1,3})(,\\d{3})*\\.(\\d{2})", Pattern.CASE_INSENSITIVE);
-
+        Order order = new Order();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.find()) {
-                    orderTotal = Double.parseDouble(matcher.group(1));
+                    order.setOrderTotal( Double.parseDouble(matcher.group(1)));
                     break; // Предположим, что мы хотим только первое вхождение
                 }
             }
@@ -61,8 +61,7 @@ public class OrderParserImpl implements IParser {
             throw new RuntimeException(e);
         }
 
-        return orderTotal;
-
+        return order.getOrderTotal();
     }
 
 }

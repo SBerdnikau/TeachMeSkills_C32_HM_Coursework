@@ -1,6 +1,7 @@
 package com.teachmeskills.finance_app.service.parsing.impl;
 
 import com.teachmeskills.finance_app.logs.LoggerService;
+import com.teachmeskills.finance_app.model.Check;
 import com.teachmeskills.finance_app.service.parsing.IParser;
 import com.teachmeskills.finance_app.session.SessionManager;
 
@@ -42,16 +43,15 @@ public class CheckParserImpl implements IParser {
 
     @Override
     public double parsingDocument(File fileName) {
-        double checkTotal = 0.0;
         LoggerService.logInfo("Парсим документ Check. Достаём поле общая стоимость...");
         Pattern pattern = Pattern.compile("Bill total amount EURO\\s*([0-9]*[.,][0-9]+)", Pattern.CASE_INSENSITIVE);
-
+        Check check = new Check();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Matcher matcher = pattern.matcher(line);
                 if (matcher.find()) {
-                    checkTotal = Double.parseDouble(matcher.group(1).replace(",","."));
+                    check.setTotalAmount( Double.parseDouble(matcher.group(1).replace(",",".")) );
                     break; // Предположим, что мы хотим только первое вхождение
                 }
             }
@@ -63,6 +63,6 @@ public class CheckParserImpl implements IParser {
             throw new RuntimeException(e);
         }
 
-        return checkTotal;
+        return check.getTotalAmount();
     }
 }
