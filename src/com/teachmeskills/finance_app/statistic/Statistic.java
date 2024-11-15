@@ -11,9 +11,9 @@ import java.io.IOException;
 
 public class Statistic {
 
-    private double totalCheckAmount = 0;
-    private double totalInvoiceAmount = 0;
-    private double totalOrderAmount = 0;
+    private double totalCheckAmount;
+    private double totalInvoiceAmount;
+    private double totalOrderAmount;
 
     public void addCheck(Check check) {
         totalCheckAmount += check.getTotalAmount();
