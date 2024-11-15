@@ -41,7 +41,7 @@ public class Parser {
                                 && path.getFileName().toString().endsWith(".txt"))
                         .forEach(path -> parserFile(path.toFile(), statistics));
             } catch (IOException e) {
-                LoggerService.logError("Logger-error: the file is not readable");
+                LoggerService.logError("The file is not readable");
                 throw new RuntimeException("Exception IO");
             }
 
@@ -79,7 +79,7 @@ public class Parser {
                 }
             }
         } catch (IOException e) {
-            LoggerService.logError("Logger-error: the file is not readable");
+            LoggerService.logError("The file is not readable");
             throw new RuntimeException("Exception IO");
         }
     }

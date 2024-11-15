@@ -44,7 +44,7 @@ public class Statistic {
             writer.newLine();
             LoggerService.logInfo("Done");
         } catch (IOException e) {
-            LoggerService.logError("Logger-error: Directory not found, file don't save");
+            LoggerService.logError("Directory not found, file don't save");
             throw new RuntimeException("Exception IO, file don't save");
         }
     }
