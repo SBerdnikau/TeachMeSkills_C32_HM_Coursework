@@ -6,26 +6,26 @@ import com.teachmeskills.finance_app.service.encrypt.EncryptorService;
 import com.teachmeskills.finance_app.session.SessionManager;
 
 public class AuthService {
-    //TODO реализация авторизации пользователя +-
+
     public SessionManager auth(String login, String password) {
 
         MockStorage storageLikeDB = new MockStorage();
-        LoggerService.logInfo("Получили данные пользователя");
+        LoggerService.logInfo("Received user data");
 
         String loginFromDB = EncryptorService.decrypt(storageLikeDB.getLogin());
         String passwordFromDB = EncryptorService.decrypt(storageLikeDB.getPassword());
 
-        LoggerService.logInfo("Начало проверки логина и пароля ");
+        LoggerService.logInfo("Start checking login and password");
         boolean result = login.toLowerCase().equals(loginFromDB) && password.equals(passwordFromDB);
 
         if(login.toLowerCase().equals(loginFromDB)  && password.equals(passwordFromDB)) {
-                LoggerService.logInfo("Конец проверки логина и пароля: " + result);
-                LoggerService.logInfo("Авторизация пользователя успешная");
+                LoggerService.logInfo("End of login and password verification:" + result);
+                LoggerService.logInfo("User authorization successful");
                 System.out.println("=======================================================");
                 return new SessionManager();
         }else {
-                LoggerService.logInfo("Конец проверки логина и пароля: " + result);
-                LoggerService.logError("Авторизация пользователя не успешная");
+                LoggerService.logInfo("End of login and password verification: " + result);
+                LoggerService.logError("User authorization failed");
                 System.out.println("=======================================================");
                 return null;
         }

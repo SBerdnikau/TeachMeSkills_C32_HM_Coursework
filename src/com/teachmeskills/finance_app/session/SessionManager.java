@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SessionManager {
-    //TODO создание сессии для пользователя +
+
     private String accessToken;
     private Date expDate;
 

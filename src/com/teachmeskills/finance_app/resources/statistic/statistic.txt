@@ -1,0 +1,3 @@
+Total Check Amount: 19638.940000000002
+Total Invoice Amount: 3173.0
+Total Order Amount: 886.0
