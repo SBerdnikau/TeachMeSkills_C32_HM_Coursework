@@ -36,10 +36,13 @@ public class Statistic {
     }
 
     public void saveStatistics(String fileName) {
+        LoggerService.logInfo("Saving to file");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            writer.write("Total Check Amount: " + totalCheckAmount + "\n");
-            writer.write("Total Invoice Amount: " + totalInvoiceAmount + "\n");
-            writer.write("Total Order Amount: " + totalOrderAmount + "\n");
+            writer.write(String.format("Total Check Amount: %.2f\n", totalCheckAmount));
+            writer.write(String.format("Total Invoice Amount: %.2f\n",  totalInvoiceAmount));
+            writer.write(String.format("Total Order Amount: %.2f\n", totalOrderAmount));
+            writer.newLine();
+            LoggerService.logInfo("Done");
         } catch (IOException e) {
             LoggerService.logError("Logger-error: Directory not found, file don't save");
             throw new RuntimeException("Exception IO, file don't save");

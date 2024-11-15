@@ -32,6 +32,8 @@ public class Parser {
 
             Statistic statistics = new Statistic();
 
+            LoggerService.logInfo("Parsing  files...");
+
             try {
                 Files.walk(rootDir.toPath())
                         .filter(Files::isRegularFile)
@@ -58,7 +60,9 @@ public class Parser {
             Pattern checkPattern = Pattern.compile(Constants.CHECK_REGEX);
             Pattern invoicePattern = Pattern.compile(Constants.INVOICE_REGEX);
             Pattern orderPattern = Pattern.compile(Constants.ORDER_REGEX);
+
             while ((line = reader.readLine()) != null) {
+
                 Matcher checkMatcher = checkPattern.matcher(line);
                 if (checkMatcher.find()) {
                     statistics.addCheck(new Check(Double.parseDouble(checkMatcher.group(1).replace(",", "."))));
